@@ -1,0 +1,15 @@
+[Unit]
+Description=ERW Portal FastAPI Backend
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/var/www/erw-portal
+EnvironmentFile=/var/www/erw-portal/.env
+ExecStart=/usr/local/bin/uvicorn api.index:app --host 127.0.0.1 --port 8001 --workers 2
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
